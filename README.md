@@ -40,8 +40,6 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
@@ -58,14 +56,10 @@ This project is a Google Chrome extension that performs sentiment analysis on Ri
 
 ### Built With
 
-* [![Next][Next.js]][Next-url]
-* [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Laravel][Laravel.com]][Laravel-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
+* [![JavaScript][JavaScript.com]][JavaScript-url]
+* [![Python][python.org]][python-url]
+* [![Flask][Flask.com]][Flask-url]
+* [![CSS][CSS.org]][CSS-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -121,28 +115,6 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 
 
-<!-- CONTACT -->
-## Contact
-
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
-
-Project Link: [https://github.com/petrockpeev/RLSA_Chrome_Extension](https://github.com/petrockpeev/RLSA_Chrome_Extension)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-* []()
-* []()
-* []()
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
 <!-- MARKDOWN LINKS & IMAGES -->
 [contributors-shield]: https://img.shields.io/github/contributors/petrockpeev/RLSA_Chrome_Extension.svg?style=for-the-badge
 [contributors-url]: https://github.com/petrockpeev/RLSA_Chrome_Extension/graphs/contributors
@@ -152,3 +124,11 @@ Project Link: [https://github.com/petrockpeev/RLSA_Chrome_Extension](https://git
 [stars-url]: https://github.com/petrockpeev/RLSA_Chrome_Extension/stargazers
 [issues-shield]: https://img.shields.io/github/issues/petrockpeev/RLSA_Chrome_Extension.svg?style=for-the-badge
 [issues-url]: https://github.com/petrockpeev/RLSA_Chrome_Extension/issues
+[JavaScript.com]: https://shields.io/badge/JavaScript-F7DF1E?logo=JavaScript&logoColor=000&style=flat-square
+[JavaScript-url]: https://www.javascript.com
+[python.org]: https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=
+[python-url]: https://www.python.org
+[Flask.com]: https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=Flask&logoColor=white
+[Flask-url]: https://flask.palletsprojects.com/en/stable
+[CSS.org]: https://img.shields.io/badge/Style-CSS3-blue?style=for-the-badge&logo=css3&logoColor=white
+[CSS-url]: https://www.w3.org/Style/CSS/Overview.en.html

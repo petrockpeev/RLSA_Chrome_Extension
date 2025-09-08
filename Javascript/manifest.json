@@ -5,6 +5,12 @@
   "description": "Analyze Rinconada text sentiment using Flask API.",
   "permissions": ["activeTab", "scripting"],
   "host_permissions": ["http://localhost:5000/*"],
+  "web_accessible_resources": [
+    {
+      "resources": ["cross.png", "double-arrow.png"],
+      "matches": ["<all_urls>"]
+    }
+  ],
   "content_scripts": [
     {
       "matches": ["<all_urls>"],

@@ -1,64 +1,122 @@
-document.addEventListener("mouseup", (e) => {
-  const selection = window.getSelection().toString().trim();
-  console.log("User selected:", selection);
+let analyzeButton = null;
+let resultBox = null;
 
-  // If user clicked the analyze button, don't remove it
-  if (e.target.id === "analyze-btn") {
-    return;
-  }
+document.addEventListener("mouseup", function (e) {
+  if (e.target.closest(".rsae-ui")) return;
 
-  if (selection) {
-    showAnalyzeButton(selection);
-  } else {
-    removeAnalyzeButton();
+  const selectedText = window.getSelection().toString().trim();
+  if (selectedText.length > 0) {
+    showAnalyzeButton(selectedText);
   }
 });
 
 function showAnalyzeButton(text) {
-  removeAnalyzeButton();
+  if (analyzeButton) analyzeButton.remove();
+  if (resultBox) resultBox.remove();
 
-  const button = document.createElement("button");
-  button.innerText = "Analyze";
-  button.id = "analyze-btn";
+  analyzeButton = document.createElement("button");
+  analyzeButton.innerHTML = `<img src="${chrome.runtime.getURL('double-arrow.png')}" 
+    style="width:16px; height:16px; vertical-align:middle; margin-right:6px;"> Analyze`;
+  analyzeButton.className = "rsae-ui";
+  Object.assign(analyzeButton.style, {
+    position: "absolute",
+    zIndex: 9999,
+    padding: "6px 12px",
+    fontSize: "14px",
+    fontWeight: "500",
+    cursor: "pointer",
+    background: "linear-gradient(135deg, #3498db, #32a0eaff)",
+    color: "#fff",
+    border: "none",
+    borderRadius: "20px",
+    boxShadow: "0 2px 6px rgba(0,0,0,0.2)",
+    transition: "background 0.2s ease",
+  });
 
-  const range = window.getSelection().getRangeAt(0);
-  const rect = range.getBoundingClientRect();
+  analyzeButton.onmouseover = () => {
+    analyzeButton.style.background = "linear-gradient(135deg, #3d8cc0ff, #32a0eaff)";
+  };
+  analyzeButton.onmouseout = () => {
+    analyzeButton.style.background = "linear-gradient(135deg, #3498dbff, #51afeeff)";
+  };
 
-  button.style.position = "absolute";
-  button.style.top = `${rect.bottom + window.scrollY}px`;
-  button.style.left = `${rect.right + window.scrollX + 5}px`;
-  button.style.zIndex = 10000;  // make sure it's above everything
+  const selection = window.getSelection();
+  if (selection.rangeCount > 0) {
+    const range = selection.getRangeAt(0);
+    const rect = range.getBoundingClientRect();
+    analyzeButton.style.top = window.scrollY + rect.bottom + "px";
+    analyzeButton.style.left = window.scrollX + rect.right + 10 + "px";
+  }
 
-  button.onclick = (e) => {
-    e.stopPropagation(); // prevent triggering mouseup again
-    console.log("Analyze button clicked with text:", text);
+  analyzeButton.onmousedown = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
+  analyzeButton.onclick = async (e) => {
+    e.stopPropagation();
+    e.preventDefault();
     analyzeText(text);
   };
 
-  document.body.appendChild(button);
-}
-
-function removeAnalyzeButton() {
-  const oldBtn = document.getElementById("analyze-btn");
-  if (oldBtn) oldBtn.remove();
+  document.body.appendChild(analyzeButton);
 }
 
 async function analyzeText(text) {
-  console.log("Sending request to Flask:", text);
   try {
     const response = await fetch("http://localhost:5000/analyze", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ text })
+      body: JSON.stringify({ text }),
     });
 
-    console.log("Response status:", response.status);
-    const result = await response.json();
-    console.log("Flask response:", result);
+    if (!response.ok) return;
 
-    alert("Sentiment: " + result.sentiment);
-  } catch (err) {
-    console.error("Error analyzing sentiment:", err);
-    alert("Error: " + err.message);
-  }
+    const data = await response.json();
+    showResultBox(data.sentiment);
+  } catch {}
+}
+
+function showResultBox(sentiment) {
+  if (resultBox) resultBox.remove();
+
+  resultBox = document.createElement("div");
+  resultBox.className = "rsae-ui";
+  resultBox.innerHTML = `
+    <span style="font-size:14px; font-weight:500;">Sentiment: <b style="color:#4CAF50;">${sentiment}</b></span>
+    <button id="closeResult" style="
+      margin-left:12px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    ">
+      <img src="${chrome.runtime.getURL('cross.png')}" style="width:14px; height:14px;">
+    </button>
+  `;
+
+  Object.assign(resultBox.style, {
+    position: "absolute",
+    zIndex: 9999,
+    padding: "8px 14px",
+    background: "#fff",
+    border: "1px solid #ddd",
+    borderRadius: "12px",
+    boxShadow: "0 4px 10px rgba(0,0,0,0.15)",
+    fontFamily: "Arial, sans-serif",
+  });
+
+  const rect = analyzeButton.getBoundingClientRect();
+  resultBox.style.top = window.scrollY + rect.bottom + 5 + "px";
+  resultBox.style.left = window.scrollX + rect.left + "px";
+
+  document.body.appendChild(resultBox);
+
+  analyzeButton.remove();
+  analyzeButton = null;
+
+  document.getElementById("closeResult").onclick = () => {
+    resultBox.remove();
+    resultBox = null;
+  };
 }
