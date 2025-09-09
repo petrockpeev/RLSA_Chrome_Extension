@@ -68,48 +68,56 @@ This project is a Google Chrome extension that performs sentiment analysis on Ri
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+Follow these steps to set up the project locally:
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+- [Google Chrome](https://www.google.com/chrome/)  
+- [Python 3.8+](https://www.python.org/downloads/)  
+- [pip](https://pip.pypa.io/en/stable/)
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/github_username/repo_name.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
-5. Change git remote url to avoid accidental pushes to base project
-   ```sh
-   git remote set-url origin github_username/repo_name
-   git remote -v # confirm the changes
-   ```
+1. **Clone the repository**
+  git clone https://github.com/petrockpeev/RLSA_Chrome_Extension.git
+  cd RLSA_Chrome_Extension
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+2. **Set up the Flask backend**
+
+- Navigate to the backend folder (or wherever your Flask app is).
+- Install Python dependencies:
+
+  pip install -r requirements.txt
+
+- Start the Flask server:
+  python app.py
+
+- By default, it runs on http://localhost:5000.
+
+3. **Load the Chrome extension**
+- Open Google Chrome and go to chrome://extensions/.
+- Enable Developer mode (top right).
+- Click Load unpacked and select the project folder.
+
+Your extension is now installed and ready to use.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p> 
 
 
 
 <!-- USAGE EXAMPLES -->
 ## Usage
+1. Open any webpage with Rinconada-Bikol text.
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+2. Highlight a word or sentence.
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+3. An Analyze button will appear beside the highlight.
+
+4. Click the button to send the text to the Flask backend.
+
+5. A small popup box will display the sentiment result: Positive, Negative, or Neutral.
+
+6. You can close the popup by clicking the ✕ icon.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -126,7 +134,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 [issues-url]: https://github.com/petrockpeev/RLSA_Chrome_Extension/issues
 [JavaScript.com]: https://shields.io/badge/JavaScript-F7DF1E?logo=JavaScript&logoColor=000&style=flat-square
 [JavaScript-url]: https://www.javascript.com
-[python.org]: https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=
+[python.org]: https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=white
 [python-url]: https://www.python.org
 [Flask.com]: https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=Flask&logoColor=white
 [Flask-url]: https://flask.palletsprojects.com/en/stable
