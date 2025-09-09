@@ -80,21 +80,21 @@ Follow these steps to set up the project locally:
 ### Installation
 
 1. **Clone the repository**
-'''
-  git clone https://github.com/petrockpeev/RLSA_Chrome_Extension.git
-  cd RLSA_Chrome_Extension
-'''
+```
+git clone https://github.com/petrockpeev/RLSA_Chrome_Extension.git
+cd RLSA_Chrome_Extension
+```
 3. **Set up the Flask backend**
 
 - Navigate to the backend folder (or wherever your Flask app is).
 - Install Python dependencies:
-'''
-  pip install -r requirements.txt
-'''
+```
+pip install -r requirements.txt
+```
 - Start the Flask server:
-'''
-  python app.py
-'''
+```
+python app.py
+```
 - By default, it runs on http://localhost:5000.
 
 3. **Load the Chrome extension**
