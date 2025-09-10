@@ -49,7 +49,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-This project is a Google Chrome extension that performs sentiment analysis on Rinconada language texts. It uses a pre-trained Support Vector Machine (SVM) model with a TF-IDF vectorizer to classify input as positive, negative, or neutral. The extension communicates with a Flask-based backend server that handles the sentiment processing. Designed to support local language technology, the tool helps analyze the emotional tone of Rinconada texts directly from the browser.
+This project is a Google Chrome extension that performs sentiment analysis on Rinconada language texts. It uses a pre-trained Support Vector Machine (SVM) model with a TF-IDF vectorizer to classify input as positive, negative, or neutral. The extension communicates with a Flask-based backend server that handles the sentiment processing. The tool helps analyze the emotional tone of Rinconada texts directly from the browser.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -80,10 +80,14 @@ Follow these steps to set up the project locally:
 ### Installation
 
 1. **Clone the repository**
+
 ```
 git clone https://github.com/petrockpeev/RLSA_Chrome_Extension.git
+```
+```
 cd RLSA_Chrome_Extension
 ```
+
 3. **Set up the Flask backend**
 
 - Navigate to the backend folder (or wherever your Flask app is).
@@ -100,7 +104,7 @@ python app.py
 3. **Load the Chrome extension**
 - Open Google Chrome and go to chrome://extensions/.
 - Enable Developer mode (top right).
-- Click Load unpacked and select the project folder.
+- Click Load unpacked and select the project folder ("Javascript").
 
 Your extension is now installed and ready to use.
 

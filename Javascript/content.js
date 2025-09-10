@@ -15,7 +15,7 @@ function showAnalyzeButton(text) {
   if (resultBox) resultBox.remove();
 
   analyzeButton = document.createElement("button");
-  analyzeButton.innerHTML = `<img src="${chrome.runtime.getURL('double-arrow.png')}" 
+  analyzeButton.innerHTML = `<img src="${chrome.runtime.getURL('arrow.png')}" 
     style="width:16px; height:16px; vertical-align:middle; margin-right:6px;"> Analyze`;
   analyzeButton.className = "rsae-ui";
   Object.assign(analyzeButton.style, {
@@ -73,38 +73,60 @@ async function analyzeText(text) {
     if (!response.ok) return;
 
     const data = await response.json();
-    showResultBox(data.sentiment);
+    showResultBox(data.sentiment, data.confidence);
   } catch {}
 }
 
-function showResultBox(sentiment) {
+function showResultBox(sentiment, confidence) {
   if (resultBox) resultBox.remove();
+
+  let color;
+  if (sentiment.toLowerCase() === "positive") {
+    color = "#4CAF50";
+  } else if (sentiment.toLowerCase() === "negative") {
+    color = "#f44336";
+  } else {
+    color = "#888";
+  }
 
   resultBox = document.createElement("div");
   resultBox.className = "rsae-ui";
   resultBox.innerHTML = `
-    <span style="font-size:14px; font-weight:500;">Sentiment: <b style="color:#4CAF50;">${sentiment}</b></span>
-    <button id="closeResult" style="
-      margin-left:12px;
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      padding: 0;
-    ">
-      <img src="${chrome.runtime.getURL('cross.png')}" style="width:14px; height:14px;">
-    </button>
-  `;
+  <button id="closeResult" style="
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  ">
+    <img src="${chrome.runtime.getURL('cross.png')}" style="width:10px; height:10px;">
+  </button>
+  <div style="font-size:14px; font-weight:500; margin-top:4px;">
+    Sentiment: <b style="color:${color};">${sentiment}</b>
+  </div>
+  <div style="font-size:12px; color:#555; margin-top:4px;">
+    Confidence: ${(confidence * 100).toFixed(2)}%
+  </div>
+`;
+
 
   Object.assign(resultBox.style, {
     position: "absolute",
     zIndex: 9999,
-    padding: "8px 14px",
+    padding: "10px 14px",
     background: "#fff",
-    border: "1px solid #ddd",
-    borderRadius: "12px",
+    border: "1.5px solid #ddd",
+    borderRadius: "10px",
     boxShadow: "0 4px 10px rgba(0,0,0,0.15)",
     fontFamily: "Arial, sans-serif",
+    minWidth: "160px",
+    position: "absolute",
+    display: "inline-block",
+    boxSizing: "border-box",
   });
+  
 
   const rect = analyzeButton.getBoundingClientRect();
   resultBox.style.top = window.scrollY + rect.bottom + 5 + "px";

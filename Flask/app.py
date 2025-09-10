@@ -19,7 +19,19 @@ def analyze():
     try:
         features = vectorizer.transform([text])
         prediction = classifier.predict(features)[0]
-        return jsonify({"sentiment": str(prediction)})
+
+        if hasattr(classifier, "predict_proba"):
+            probs = classifier.predict_proba(features)[0]
+            class_index = list(classifier.classes_).index(prediction)
+            confidence = float(probs[class_index])
+        else:
+            confidence = 1.0 # fallback if model has no probabilities
+
+        return jsonify({
+            "sentiment": str(prediction),
+            "confidence": confidence
+        })
+
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
