@@ -1,10 +1,14 @@
 {
   "manifest_version": 3,
-  "name": "Rinconada Sentiment Analyzer",
+  "name": "Rinconada Language Sentiment Analyzer",
   "version": "1.0",
   "description": "Analyze Rinconada text sentiment using Flask API.",
-  "permissions": ["activeTab", "scripting"],
+  "permissions": ["activeTab", "scripting", "storage"],
   "host_permissions": ["http://localhost:5000/*"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "RLSA Settings"
+  },
   "web_accessible_resources": [
     {
       "resources": ["cross.png", "arrow.png"],

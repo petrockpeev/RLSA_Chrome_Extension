@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>RLSA — Model Selector</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      width: 240px;
+      padding: 16px;
+      margin: 0;
+      background: #f9fafb;
+      color: #111827;
+    }
+    h2 {
+      font-size: 16px;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+    select {
+      width: 100%;
+      padding: 6px 8px;
+      border-radius: 6px;
+      border: 1px solid #d1d5db;
+      background: white;
+      font-size: 14px;
+    }
+    .footer {
+      margin-top: 14px;
+      font-size: 12px;
+      color: #6b7280;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="row">
+    <div style="font-weight:600; margin-bottom:6px;">Select model</div>
+    <select id="modelSelect">
+      <option>Loading models…</option>
+    </select>
+    <div class="small">Current Best Model: Random Forest</div>
+    <div class="footer">Powered by RLSA</div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

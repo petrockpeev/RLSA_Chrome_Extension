@@ -2,7 +2,7 @@ let analyzeButton = null;
 let resultBox = null;
 
 document.addEventListener("mouseup", function (e) {
-  if (e.target.closest(".rsae-ui")) return;
+  if (e.target.closest(".rlsa-ui")) return;
 
   const selectedText = window.getSelection().toString().trim();
   if (selectedText.length > 0) {
@@ -17,7 +17,7 @@ function showAnalyzeButton(text) {
   analyzeButton = document.createElement("button");
   analyzeButton.innerHTML = `<img src="${chrome.runtime.getURL('arrow.png')}" 
     style="width:16px; height:16px; vertical-align:middle; margin-right:6px;"> Analyze`;
-  analyzeButton.className = "rsae-ui";
+  analyzeButton.className = "rlsa-ui";
   Object.assign(analyzeButton.style, {
     position: "absolute",
     zIndex: 9999,
@@ -62,19 +62,30 @@ function showAnalyzeButton(text) {
   document.body.appendChild(analyzeButton);
 }
 
-async function analyzeText(text) {
+async function analyzeText(text, rect) {
+  const selectedModel = await new Promise((resolve) => {
+    chrome.storage.sync.get({ selectedModel: "default" }, (data) => { resolve(data.selectedModel); });
+  });
+
   try {
-    const response = await fetch("http://localhost:5000/analyze", {
+    const resp = await fetch("http://localhost:5000/analyze", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ text }),
+      body: JSON.stringify({ text: text, model: selectedModel })
     });
 
-    if (!response.ok) return;
+    if (!resp.ok) {
+      showResultBox("Server error", 0);
+      return;
+    }
 
-    const data = await response.json();
-    showResultBox(data.sentiment, data.confidence);
-  } catch {}
+    const data = await resp.json();
+    const sentiment = data.sentiment || "Unknown";
+    const confidence = typeof data.confidence === "number" ? data.confidence : null;
+    showResultBox(sentiment, confidence);
+  } catch (err) {
+    showResultBox("Server error", 0);
+  }
 }
 
 function showResultBox(sentiment, confidence) {
@@ -90,7 +101,7 @@ function showResultBox(sentiment, confidence) {
   }
 
   resultBox = document.createElement("div");
-  resultBox.className = "rsae-ui";
+  resultBox.className = "rlsa-ui";
   resultBox.innerHTML = `
   <button id="closeResult" style="
     position: absolute;
