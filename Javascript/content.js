@@ -16,7 +16,7 @@ function showAnalyzeButton(text) {
 
   analyzeButton = document.createElement("button");
   analyzeButton.innerHTML = `<img src="${chrome.runtime.getURL('arrow.png')}" 
-    style="width:16px; height:16px; vertical-align:middle; margin-right:6px;"> Analyze`;
+    style="width:20px; height:20px; vertical-align:middle; margin-right:6px;"> Analyze`;
   analyzeButton.className = "rlsa-ui";
   Object.assign(analyzeButton.style, {
     position: "absolute",
@@ -25,19 +25,21 @@ function showAnalyzeButton(text) {
     fontSize: "14px",
     fontWeight: "500",
     cursor: "pointer",
-    background: "linear-gradient(135deg, #3498db, #32a0eaff)",
-    color: "#fff",
-    border: "none",
-    borderRadius: "20px",
-    boxShadow: "0 2px 6px rgba(0,0,0,0.2)",
-    transition: "background 0.2s ease",
+    background: "#1f2933",
+    color: "#f1f5f9",
+    border: "2px solid #316e7d",
+    borderRadius: "6px",
+    boxShadow: "0 2px 6px rgba(0,0,0,0.3)",
+    transition: "all 0.2s ease",
   });
 
   analyzeButton.onmouseover = () => {
-    analyzeButton.style.background = "linear-gradient(135deg, #3d8cc0ff, #32a0eaff)";
+    analyzeButton.style.background = "#24363f";
+    analyzeButton.style.borderColor = "#4fd1c5";
   };
   analyzeButton.onmouseout = () => {
-    analyzeButton.style.background = "linear-gradient(135deg, #3498dbff, #51afeeff)";
+    analyzeButton.style.background = "#1f2933";
+    analyzeButton.style.borderColor = "#316e7d";
   };
 
   const selection = window.getSelection();
@@ -97,7 +99,7 @@ function showResultBox(sentiment, confidence) {
   } else if (sentiment.toLowerCase() === "negative") {
     color = "#f44336";
   } else {
-    color = "#888";
+    color = "#b6b6b6ff";
   }
 
   resultBox = document.createElement("div");
@@ -112,13 +114,15 @@ function showResultBox(sentiment, confidence) {
     cursor: pointer;
     padding: 0;
   ">
-    <img src="${chrome.runtime.getURL('cross.png')}" style="width:10px; height:10px;">
+    <img src="${chrome.runtime.getURL('cross.png')}" style="width:12px; height:12px;">
   </button>
-  <div style="font-size:14px; font-weight:500; margin-top:4px;">
+  <div style="font-size:14px; font-weight:500; margin-top:3.5px; margin-right:12px;">
     Sentiment: <b style="color:${color};">${sentiment}</b>
   </div>
-  <div style="font-size:12px; color:#555; margin-top:4px;">
+  <div style="font-size:12px; color:#cbd5e1; margin-top:4px;">
     Confidence: ${(confidence * 100).toFixed(2)}%
+  </div>
+
   </div>
 `;
 
@@ -126,16 +130,17 @@ function showResultBox(sentiment, confidence) {
   Object.assign(resultBox.style, {
     position: "absolute",
     zIndex: 9999,
-    padding: "10px 14px",
-    background: "#fff",
-    border: "1.5px solid #ddd",
-    borderRadius: "10px",
-    boxShadow: "0 4px 10px rgba(0,0,0,0.15)",
+    padding: "12px 14px",
+    background: "#141e24",
+    color: "#f1f5f9",
+    border: "2px solid #316e7d",
+    borderRadius: "8px",
+    boxShadow: "0 4px 12px rgba(0,0,0,0.4)",
     fontFamily: "Arial, sans-serif",
+    fontSize: "14px",
     minWidth: "160px",
-    position: "absolute",
-    display: "inline-block",
-    boxSizing: "border-box",
+    maxWidth: "240px",
+    boxSizing: "border-box"
   });
   
 
