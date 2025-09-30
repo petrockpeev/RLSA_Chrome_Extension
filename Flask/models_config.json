@@ -2,43 +2,49 @@
   "cnn": {
     "name": "cnn",
     "type": "tensorflow",
-    "model_path": "models/cnn_model.keras",
-    "tokenizer_path": "models/cnn_tokenizer.obj",
+    "repo": "KimSongUn/Models",
+    "model_file": "cnn_model.keras",
+    "tokenizer_file": "cnn_tokenizer.obj",
     "desc": "Convolutional Neural Network with tokenizer"
   },
   "lstm": {
     "name": "lstm",
     "type": "tensorflow",
-    "model_path": "models/lstm_model.keras",
-    "tokenizer_path": "models/lstm_tokenizer.obj",
+    "repo": "KimSongUn/Models",
+    "model_file": "lstm_model.keras",
+    "tokenizer_file": "lstm_tokenizer.obj",
     "desc": "LSTM with tokenizer"
   },
   "rnn": {
     "name": "rnn",
     "type": "tensorflow",
-    "model_path": "models/rnn_model.keras",
-    "tokenizer_path": "models/rnn_tokenizer.obj",
+    "repo": "KimSongUn/Models",
+    "model_file": "rnn_model.keras",
+    "tokenizer_file": "rnn_tokenizer.obj",
     "desc": "RNN with tokenizer"
   },
   "naive_bayes": {
     "name": "naive_bayes",
     "type": "sklearn",
-    "model_path": "models/NaiveBayes_model.obj",
-    "vectorizer_path": "models/NaiveBayes_tfidf_vectorizer.obj",
+    "repo": "KimSongUn/Models",
+    "model_file": "NaiveBayes_model.obj",
+    "vectorizer_file": "NaiveBayes_tfidf_vectorizer.obj",
     "desc": "Naïve Bayes with TF-IDF vectorizer"
   },
   "random_forest": {
     "name": "random_forest",
     "type": "sklearn",
-    "model_path": "models/RandomForest_model.obj",
-    "vectorizer_path": "models/RandomForest_tfidf_vectorizer.obj",
+    "repo": "KimSongUn/Models",
+    "model_file": "RandomForest_model.obj",
+    "vectorizer_file": "RandomForest_tfidf_vectorizer.obj",
     "desc": "Random Forest with TF-IDF vectorizer"
   },
   "svm": {
     "name": "svm",
     "type": "sklearn",
-    "model_path": "models/SVM_model.obj",
-    "vectorizer_path": "models/SVM_tfidf_vectorizer.obj",
+    "repo": "KimSongUn/Models",
+    "model_file": "SVM_model.obj",
+    "vectorizer_file": "SVM_tfidf_vectorizer.obj",
     "desc": "Support Vector Machine with TF-IDF vectorizer"
   }
 }

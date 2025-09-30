@@ -1,3 +1,8 @@
+let currentTheme = "dark";
+chrome.storage.sync.get({ theme: "dark" }, (data) => {
+  currentTheme = data.theme;
+});
+
 let analyzeButton = null;
 let resultBox = null;
 
@@ -9,6 +14,38 @@ document.addEventListener("mouseup", function (e) {
     showAnalyzeButton(selectedText);
   }
 });
+
+function getThemeStyles(type) {
+  if (currentTheme === "light") {
+    if (type === "button") {
+      return {
+        background: "#f9fafb",
+        color: "#111827",
+        border: "2px solid #d1d5db"
+      };
+    } else if (type === "box") {
+      return {
+        background: "#ffffff",
+        color: "#111827",
+        border: "2px solid #d1d5db"
+      };
+    }
+  } else {
+    if (type === "button") {
+      return {
+        background: "#1f2933",
+        color: "#f1f5f9",
+        border: "2px solid #316e7d"
+      };
+    } else if (type === "box") {
+      return {
+        background: "#141e24",
+        color: "#f1f5f9",
+        border: "2px solid #316e7d"
+      };
+    }
+  }
+}
 
 function showAnalyzeButton(text) {
   if (analyzeButton) analyzeButton.remove();
@@ -25,22 +62,26 @@ function showAnalyzeButton(text) {
     fontSize: "14px",
     fontWeight: "500",
     cursor: "pointer",
-    background: "#1f2933",
-    color: "#f1f5f9",
-    border: "2px solid #316e7d",
     borderRadius: "6px",
     boxShadow: "0 2px 6px rgba(0,0,0,0.3)",
-    transition: "all 0.2s ease",
-  });
+    transition: "all 0.2s ease"
+  }, getThemeStyles("button"));
 
   analyzeButton.onmouseover = () => {
-    analyzeButton.style.background = "#24363f";
-    analyzeButton.style.borderColor = "#4fd1c5";
+    if (currentTheme === "light") {
+      analyzeButton.style.background = "#e5e7eb";
+      analyzeButton.style.borderColor = "#9ca3af";
+    } else {
+      analyzeButton.style.background = "#24363f";
+      analyzeButton.style.borderColor = "#4fd1c5";
+    }
   };
   analyzeButton.onmouseout = () => {
-    analyzeButton.style.background = "#1f2933";
-    analyzeButton.style.borderColor = "#316e7d";
+    const btnStyles = getThemeStyles("button");
+    analyzeButton.style.background = btnStyles.background;
+    analyzeButton.style.borderColor = btnStyles.border.split(" ")[2];
   };
+
 
   const selection = window.getSelection();
   if (selection.rangeCount > 0) {
@@ -124,16 +165,13 @@ function showResultBox(sentiment, confidence) {
   </div>
 
   </div>
-`;
+  `;
 
 
   Object.assign(resultBox.style, {
     position: "absolute",
     zIndex: 9999,
     padding: "12px 14px",
-    background: "#141e24",
-    color: "#f1f5f9",
-    border: "2px solid #316e7d",
     borderRadius: "8px",
     boxShadow: "0 4px 12px rgba(0,0,0,0.4)",
     fontFamily: "Arial, sans-serif",
@@ -141,7 +179,8 @@ function showResultBox(sentiment, confidence) {
     minWidth: "160px",
     maxWidth: "240px",
     boxSizing: "border-box"
-  });
+  }, getThemeStyles("box"));
+
   
 
   const rect = analyzeButton.getBoundingClientRect();
