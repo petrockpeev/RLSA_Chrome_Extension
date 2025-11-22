@@ -106,7 +106,10 @@ python app.py
 - Enable Developer mode (top right).
 - Click Load unpacked and select the project folder ("Javascript").
 
-Your extension is now installed and ready to use.
+REQUIRES HF TOKEN!!
+Contact my email for the HF Token: reiishigane@gmail.com
+
+Your extension is now installed and should be ready to use.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p> 
 
