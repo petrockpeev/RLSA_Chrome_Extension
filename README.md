@@ -131,7 +131,7 @@ Your extension is now installed and ready to use.
 <!-- Sample Image -->
 ## Sample
 Positive sample image taken from a facebook page (https://www.facebook.com/pasadarinconada)
-![Sample Image]((Pos)_LSTM_sample_censored.png)
+![Sample Image]((Pos)_CNN_sample_censored.png)
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
