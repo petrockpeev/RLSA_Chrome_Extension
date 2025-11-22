@@ -49,7 +49,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-This project is a Google Chrome extension that performs sentiment analysis on Rinconada language texts. It uses a pre-trained Support Vector Machine (SVM) model with a TF-IDF vectorizer to classify input as positive, negative, or neutral. The extension communicates with a Flask-based backend server that handles the sentiment processing. The tool helps analyze the emotional tone of Rinconada texts directly from the browser.
+This project is a Google Chrome extension that performs sentiment analysis on Rinconada language texts. It uses a pre-trained Traditional and Deep Learning Models with vectorizers to classify input as positive, negative, or neutral. The extension communicates with a Flask-based backend server that handles the sentiment processing. The tool helps analyze the emotional tone of Rinconada texts directly from the browser.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
