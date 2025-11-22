@@ -128,6 +128,10 @@ Your extension is now installed and ready to use.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<!-- Sample Image -->
+## Sample
+Positive sample image taken from a facebook page (https://www.facebook.com/pasadarinconada)
+![Sample Image]((Pos)_LSTM_sample_censored.png)
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
