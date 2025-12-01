@@ -95,43 +95,7 @@ def load_models():
         except Exception as e:
             print(f"Failed to load {name}: {e}")
 
-# def load_models():
-#     config_path = os.path.join(MODEL_DIR, MODELS_CONFIG)
-#     if not os.path.exists(config_path):
-#         print("models_config.json not found")
-#         return
-
-#     with open(config_path, "r", encoding="utf-8") as f:
-#         cfg = json.load(f)
-
-#     for name, meta in cfg.items():
-#         mtype = meta.get("type", "")
-#         try:
-#             if mtype == "sklearn":
-#                 model = joblib.load(os.path.join(MODEL_DIR, meta["model_path"]))
-#                 vectorizer = joblib.load(os.path.join(MODEL_DIR, meta["vectorizer_path"]))
-#                 model_registry[name] = {
-#                     "type": "sklearn",
-#                     "model": model,
-#                     "vectorizer": vectorizer,
-#                     "meta": meta
-#                 }
-
-#             elif mtype == "tensorflow":
-#                 model = keras.models.load_model(os.path.join(MODEL_DIR, meta["model_path"]))
-#                 tokenizer = joblib.load(os.path.join(MODEL_DIR, meta["tokenizer_path"]))
-#                 model_registry[name] = {
-#                     "type": "tensorflow",
-#                     "model": model,
-#                     "tokenizer": tokenizer,
-#                     "meta": meta
-#                 }
-
-#             else:
-#                 print(f"Unknown model type for {name}: {mtype}")
-#         except Exception as e:
-#             print(f"Failed to load {name}: {e}")
-
+# load models at startup
 load_models()
 
 # ---------- Routes ----------
