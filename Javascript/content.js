@@ -1,7 +1,4 @@
-let currentTheme = "dark";
-chrome.storage.sync.get({ theme: "dark" }, (data) => {
-  currentTheme = data.theme;
-});
+const currentTheme = "dark";
 
 let analyzeButton = null;
 let resultBox = null;
@@ -16,36 +13,21 @@ document.addEventListener("mouseup", function (e) {
 });
 
 function getThemeStyles(type) {
-  if (currentTheme === "light") {
-    if (type === "button") {
-      return {
-        background: "#f9fafb",
-        color: "#111827",
-        border: "2px solid #d1d5db"
-      };
-    } else if (type === "box") {
-      return {
-        background: "#ffffff",
-        color: "#111827",
-        border: "2px solid #d1d5db"
-      };
-    }
-  } else {
-    if (type === "button") {
-      return {
-        background: "#1f2933",
-        color: "#f1f5f9",
-        border: "2px solid #316e7d"
-      };
-    } else if (type === "box") {
-      return {
-        background: "#141e24",
-        color: "#f1f5f9",
-        border: "2px solid #316e7d"
-      };
-    }
+  if (type === "button") {
+    return {
+      background: "#1f2933",
+      color: "#f1f5f9",
+      border: "2px solid #316e7d"
+    };
+  } else if (type === "box") {
+    return {
+      background: "#141e24",
+      color: "#f1f5f9",
+      border: "2px solid #316e7d"
+    };
   }
 }
+
 
 function showAnalyzeButton(text) {
   if (analyzeButton) analyzeButton.remove();
@@ -68,14 +50,10 @@ function showAnalyzeButton(text) {
   }, getThemeStyles("button"));
 
   analyzeButton.onmouseover = () => {
-    if (currentTheme === "light") {
-      analyzeButton.style.background = "#e5e7eb";
-      analyzeButton.style.borderColor = "#9ca3af";
-    } else {
-      analyzeButton.style.background = "#24363f";
-      analyzeButton.style.borderColor = "#4fd1c5";
-    }
+    analyzeButton.style.background = "#24363f";
+    analyzeButton.style.borderColor = "#4fd1c5";
   };
+
   analyzeButton.onmouseout = () => {
     const btnStyles = getThemeStyles("button");
     analyzeButton.style.background = btnStyles.background;
