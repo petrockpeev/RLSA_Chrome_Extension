@@ -50,6 +50,7 @@ def load_models():
         repo = meta.get("repo")
 
         try:
+            # for sklearn models or traditional machine learning models
             if mtype == "sklearn":
                 model_path = hf_hub_download(
                     repo_id=repo,
@@ -71,6 +72,7 @@ def load_models():
                     "meta": meta
                 }
 
+            # for tensorflow models or deep learning models
             elif mtype == "tensorflow":
                 model_path = hf_hub_download(
                     repo_id=repo,
@@ -95,7 +97,7 @@ def load_models():
         except Exception as e:
             print(f"Failed to load {name}: {e}")
 
-# load models at startup
+# load models at startup | this is important to have models ready
 load_models()
 
 # ---------- Routes ----------
