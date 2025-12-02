@@ -10,15 +10,15 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     switch (message.sentiment.toLowerCase()) {
       case "positive":
         badgeText = "POS";
-        badgeColor = "#4CAF50"; // green
+        badgeColor = "#4CAF50";
         break;
       case "negative":
         badgeText = "NEG";
-        badgeColor = "#F44336"; // red
+        badgeColor = "#F44336";
         break;
       case "neutral":
         badgeText = "NEU";
-        badgeColor = "#FFC107"; // amber
+        badgeColor = "#abababff";
         break;
     }
 
